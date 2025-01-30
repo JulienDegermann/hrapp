@@ -3,11 +3,10 @@ services:
         image: postgres:14-alpine
         container_name: hr_db
         environment:
-            POSTGRES_DB: hr-app
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: root
-            POSTGRES_ROOT_PASSWORD: root
-            POSTGRES_ROOT_USER: root
+            DB_CONNECTION: pgsql
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
         ports:
             - "5432:5432"
         # healthcheck:
@@ -49,7 +48,7 @@ services:
         ports:
             - "8080:80"
         environment:
-            DATABASE_URL: postgres://root:root@db:5432/hr-app
+            DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@db:5432/${DB_DATABASE}
         volumes:
             - .:/var/www/html
 volumes:

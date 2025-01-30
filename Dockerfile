@@ -10,6 +10,7 @@ curl \
 git \
 zip \
 unzip \
+postgresql-client \
 && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install intl \
