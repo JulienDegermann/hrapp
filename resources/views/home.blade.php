@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layout')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+@section('content')
+<h1>Home</h1>
+<p>Welcome to our home page!</p>
+@foreach($profiles as $profile)
+<div class="profile">
+    <h2>{{ $profile->first_name }} {{ $profile->last_name }}</h2>
+    <p>e-mail{{ $profile->email }}</p>
+    <p>phone{{ $profile->phone }}</p>
+    <p>resume{{ $profile->resume }}</p>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-</head>
 
-<body>
-<h1>coucou ma gueule</h1>
-@foreach($datas as $user)
-    <p>{{ $user->first_name }}</p>
+</div>
 @endforeach
-</body>
-
-</html>
+@endsection

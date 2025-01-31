@@ -9,12 +9,6 @@ services:
             POSTGRES_PASSWORD: ${DB_PASSWORD}
         ports:
             - "5432:5432"
-        # healthcheck:
-        #     test: ["CMD-SHELL", "pg_isready -U root -d hr-app"]
-        #     interval: 10s
-        #     retries: 5
-        #     start_period: 30s
-        #     timeout: 10s
         volumes:
             - postgres_data:/var/lib/postgresql/data:rw
     mailhog:
@@ -25,16 +19,6 @@ services:
             - "8025:8025"
         environment:
             MH_STORAGE: memory
-    # pgadmin:
-    #     image: dpage/pgadmin4
-    #     container_name: hr-phpmyadmin
-    #     depends_on:
-    #         - db
-    #     ports:
-    #         - "8081:80"
-    #     environment:
-    #         PMA_HOST: db
-    #         PG_PASSWORD: root
     php:
         image: hr-app
         container_name: hr-app-8.3
@@ -47,6 +31,7 @@ services:
             dockerfile: Dockerfile
         ports:
             - "8080:80"
+            - "5173:5173"
         environment:
             DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@db:5432/${DB_DATABASE}
         volumes:
