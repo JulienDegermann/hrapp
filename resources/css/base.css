@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    transition: all 0.3s;
+}
+
+body {
+    background: var(--light);
+    color: var(--dark);
+}
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.flex {
+    display: flex;
+    &.wrap {
+        flex-wrap: wrap;
+    }
+    &.col {
+        flex-direction: column;
+    }
+}
+
+img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

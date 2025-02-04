@@ -1,0 +1,17 @@
+.button {
+    padding: 1rem 3rem;
+    border: 2px solid var(--dark);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: var(--dark);
+    text-transform: uppercase;
+    
+    &.cta {
+        background: var(--action);
+    }
+    
+    &:hover {
+        background-color: var(--dark);
+        color: var(--light);
+    }
+}

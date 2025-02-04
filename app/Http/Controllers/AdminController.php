@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index(): View
     {
-        $profiles = Profile::All();
+        $profiles = Profile::all();
 
         return view('admin.admin', ['profiles' => $profiles]);
     }

@@ -3,6 +3,7 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
+        "watch": "vite build --watch ",
         "dev": "vite"
     },
     "devDependencies": {
@@ -15,6 +16,7 @@
         "vite": "^6.0"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.0.1"
+        "@tailwindcss/vite": "^4.0.3",
+        "watch": "^1.0.2"
     }
 }

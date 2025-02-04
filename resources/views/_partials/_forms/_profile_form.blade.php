@@ -35,6 +35,6 @@
         <textarea name="resume" id="resume" class="form-control">{{ isset($profile) ? $profile->resume : '' }}</textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <button class="button" type="submit" class="btn btn-primary">Enregistrer</button>
     </div>
 </form>
