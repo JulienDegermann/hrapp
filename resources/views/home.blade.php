@@ -38,9 +38,10 @@
             <h2 class="title">Tous les profils</h2>
             @foreach($profiles as $profile)
             <div class="profile">
-                <h3>{{ $profile->first_name }} {{ $profile->last_name }}</h3>
+                <h3 class='title'>{{ $profile->first_name }} {{ $profile->last_name }}</h3>
                 <p>e-mail : {{ $profile->email }}</p>
                 <p>phone : {{ $profile->phone ?? ''}}</p>
+                <img src="{{ asset('uploads/images/'.$profile->picture)}}" alt="photo de {{$profile->first_name}}">
 
             </div>
             @endforeach

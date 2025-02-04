@@ -1,4 +1,7 @@
-<form method="POST" action="{{ isset($profile) ? route('admin.profile.edit', ['id' => $profile->id]) : route('admin.profile.create') }}">
+<form
+    method="POST"
+    action="{{ isset($profile) ? route('admin.profile.edit', ['id' => $profile->id]) : route('admin.profile.create') }}"
+    enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <legend> {{ isset($profile) ? 'Modifier' : 'Ajouter' }} un profil</legend>
@@ -34,6 +37,18 @@
         <label for="resume">Présentation</label>
         <textarea name="resume" id="resume" class="form-control">{{ isset($profile) ? $profile->resume : '' }}</textarea>
     </div>
+    <div class="form-group">
+        <label for="picture">Photo de profil</label>
+        <input type="file" name="picture" id="picture" class="form-control">
+        @if(isset($profile->picture))
+        <img src="{{ asset('uploads/images/' . $profile->picture) }}" alt="photo de profil de {{ $profile->first_name }}">
+        <div class="form-group flex">
+            <input id="delete_img" name="delete_img" class="form-control" type="checkbox">
+            <label for="delete_img">Supprimer l'image</label>
+        </div>
+        @endif
+    </div>
+
 
     <button class="button" type="submit" class="btn btn-primary">Enregistrer</button>
     </div>

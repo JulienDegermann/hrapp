@@ -6,6 +6,7 @@ form {
             margin-top: 1rem;
             margin-bottom: 0.5rem;
         }
+
         input,
         textarea {
             display: inline-block;
@@ -19,8 +20,17 @@ form {
                 border: 3px solid var(--dark);
             }
         }
+
         textarea {
             resize: vertical;
+        }
+
+        &.flex {
+            label,
+            input {
+                width: auto;
+                margin: 0;
+            }
         }
     }
 }

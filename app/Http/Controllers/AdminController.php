@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Profile;
-use Illuminate\Http\RedirectResponse;
+use App\Services\ConvertImageService;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Mockery\Undefined;
+use App\Services\ImageConverter;
+use App\Services\Profile\ProfileImageService;
+use App\Services\Profile\SaveProfileService;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -22,8 +24,6 @@ class AdminController extends Controller
 
         return view('admin.admin', ['profiles' => $profiles]);
     }
-
-
 
     /**
      * Display all profiles
@@ -67,23 +67,18 @@ class AdminController extends Controller
      * @param Request $request
      * @return RedirectResponse - redirect to the profiles page
      */
-    public function saveProfile(Request $request): RedirectResponse
+    public function saveProfile(Request $request, SaveProfileService $saveProfile): RedirectResponse
     {
         $datas = $request->all();
-        try {
-            $profile = new Profile();
-            $profile->email = $datas['email'];
-            $profile->first_name = $datas['first_name'];
-            $profile->last_name = $datas['last_name'];
-            $profile->phone = $datas['phone'];
-            $profile->linkedin = $datas['linkedin'];
-            $profile->github = $datas['github'];
-            $profile->resume = $datas['resume'];
-            $profile->date_of_birth = $datas['date_of_birth'];
 
-            $profile->save();
-        } catch (Exception $e) {
-            dd($e);
+        $profile = new Profile;
+
+        if ($profile) {
+            try {
+                $profile = $saveProfile->editAndSaveProfile($datas, $profile);
+            } catch (Exception $e) {
+                dd($e);
+            }
         }
 
         return redirect()->route('admin.profiles');
@@ -114,21 +109,25 @@ class AdminController extends Controller
      * save an edited profile
      * @param int $id - id of the edited profile
      * @param Request $request
+     * @param ProfileImageService $profileImage - service which manage profile images
      * @return RedirectResponse - redirection to list
      */
-    public function updateProfile(int $id, Request $request) {
-        
-        $datas = $request->all();
+    public function updateProfile(
+        int $id,
+        Request $request,
+        SaveProfileService $saveProfile
+    ) {
 
+        $datas = $request->all();
         $profile = Profile::find($id);
-        $profile->first_name = $datas['first_name'];
-        $profile->last_name = $datas['last_name'];
-        $profile->email = $datas['email'];
-        $profile->phone = $datas['phone'];
-        $profile->resume = $datas['resume'];
-        $profile->github = $datas['github'];
-        $profile->linkedin = $datas['linkedin'];
-        $profile->save();
+
+        if ($profile) {
+            try {
+                $profile = $saveProfile->editAndSaveProfile($datas, $profile);
+            } catch (Exception $e) {
+                dd($e);
+            }
+        }
 
         return redirect()->route('admin.profiles');
     }

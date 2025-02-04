@@ -1,10 +1,13 @@
 .button {
     padding: 1rem 3rem;
     border: 2px solid var(--dark);
+    background: var(--light);
     border-radius: 0.5rem;
     cursor: pointer;
     color: var(--dark);
     text-transform: uppercase;
+    text-decoration: none;
+    margin: 1rem;
     
     &.cta {
         background: var(--action);
