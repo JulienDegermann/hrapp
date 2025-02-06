@@ -41,6 +41,7 @@
         <label for="picture">Photo de profil</label>
         <input type="file" name="picture" id="picture" class="form-control">
         @if(isset($profile->picture))
+        <br />
         <img src="{{ asset('uploads/images/' . $profile->picture) }}" alt="photo de profil de {{ $profile->first_name }}">
         <div class="form-group flex">
             <input id="delete_img" name="delete_img" class="form-control" type="checkbox">
@@ -49,7 +50,5 @@
         @endif
     </div>
 
-
-    <button class="button" type="submit" class="btn btn-primary">Enregistrer</button>
-    </div>
+    <input type="submit" class="button" value="enregistrer" name="save_profile">
 </form>

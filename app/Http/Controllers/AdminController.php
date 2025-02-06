@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Profile;
-use App\Services\ConvertImageService;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
-use App\Services\ImageConverter;
 use App\Services\Profile\ProfileImageService;
 use App\Services\Profile\SaveProfileService;
+use App\Services\Profile\ProfileExperiences;
 use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
@@ -116,7 +115,7 @@ class AdminController extends Controller
         int $id,
         Request $request,
         SaveProfileService $saveProfile
-    ) {
+    ): RedirectResponse {
 
         $datas = $request->all();
         $profile = Profile::find($id);
@@ -128,6 +127,25 @@ class AdminController extends Controller
                 dd($e);
             }
         }
+
+        return redirect()->route('admin.profiles');
+    }
+
+    /**
+     * update profile's experiences
+     * @param int $id - profile's id
+     * @param Request $request
+     * @return RedirectResponse - redirection to edit page
+     */
+    public function updateProfileExperiences(
+        int $id,
+        Request $request,
+        ProfileExperiences $profileExperiences
+    ): RedirectResponse {
+        $datas = $request->all();
+        $profile = Profile::find($id);
+
+        $profile = $profileExperiences->updateProfileExperiences($profile, $datas);
 
         return redirect()->route('admin.profiles');
     }

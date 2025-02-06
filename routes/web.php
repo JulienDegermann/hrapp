@@ -27,3 +27,4 @@ Route::get('/back-office/profile/new', [AdminController::class, 'createProfile']
 Route::put('/back-office/profile/new', [AdminController::class, 'saveProfile'])->name('admin.profile.create');
 
 Route::delete('/back-office/profile/delete/{id}', [AdminController::class, 'deleteProfile'])->name('admin.profile.delete');
+Route::put('/back-office/profile/{id}/experiences', [AdminController::class, 'updateProfileExperiences'])->name('update_experiences');

@@ -43,6 +43,12 @@
                 <p>phone : {{ $profile->phone ?? ''}}</p>
                 <img src="{{ asset('uploads/images/'.$profile->picture)}}" alt="photo de {{$profile->first_name}}">
 
+                @if(isset($profile->experiences))
+                @foreach($profile->experiences as $experience)
+                {{$experience->title}}
+                @endforeach
+                @endif
+
             </div>
             @endforeach
         </div>
