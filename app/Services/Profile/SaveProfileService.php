@@ -19,7 +19,7 @@ final class SaveProfileService
      */
     public function editAndSaveProfile(array $formDatas, Profile $profile): Profile
     {
-        if (isset($datas['delete_img']) && isset($profile->picture)) {
+        if (isset($formDatas['delete_img']) && isset($profile->picture)) {
             $profile = $this->profileImageService->deleteProfileImage($profile);
         }
 

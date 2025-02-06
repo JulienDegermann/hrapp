@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Profile;
+use App\Services\Profile\ExperiencePicture;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Services\Profile\ProfileImageService;
@@ -54,9 +55,22 @@ class AdminController extends Controller
      * @param int $id - id of the profile to delete
      * @return View - display the form to create a profile
      */
-    public function deleteProfile(int $id): RedirectResponse
-    {
+    public function deleteProfile(
+        int $id,
+        ProfileImageService $profileImage,
+        ExperiencePicture $expPicture
+    ): RedirectResponse {
         $profile = Profile::find($id);
+
+        // unlink images
+        if (isset($profile->picture)) {
+            $profileImage->deleteProfileImage($profile);
+        }
+        foreach ($profile->experiences as $exp) {
+            if ($exp->picture) {
+                $expPicture->deleteExperienceImage($exp);
+            }
+        }
         $profile->delete();
         return redirect()->route('admin.profiles');
     }
