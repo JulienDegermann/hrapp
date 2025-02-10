@@ -1,7 +1,12 @@
 const addExperience = document.querySelector("#add-experience");
 const experiencesWrapper = document.querySelector("#experiences");
-console.log("loaded form");
 
+let experienceToggler = document.querySelectorAll("#experiences fieldset");
+
+const toggleExperience = (e) => {
+    console.log("clicked");
+    e.target.classList.toggle("hide");
+};
 const addNewExperience = () => {
     console.log("clicker");
     const inputCount = document.querySelectorAll(
@@ -9,7 +14,6 @@ const addNewExperience = () => {
     ).length;
 
     const newElement = document.createElement("fieldset");
-    newElement.classList.add("form-group");
     newElement.innerHTML = `
     <legend>Nouvelle expérience</legend>
                 <div class="form-group">
@@ -90,7 +94,17 @@ const addNewExperience = () => {
     `;
 
     experiencesWrapper.append(newElement);
+    experienceToggler = document.querySelectorAll("#experiences fieldset");
+    console.log(experienceToggler);
+    experienceToggler.forEach((toggler) => {
+        toggler.addEventListener("click", toggleExperience);
+    });
+    
 };
+
 if (addExperience) {
     addExperience.addEventListener("click", addNewExperience);
 }
+experienceToggler.forEach((toggler) => {
+    toggler.addEventListener("click", toggleExperience);
+});

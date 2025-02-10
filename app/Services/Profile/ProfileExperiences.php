@@ -2,11 +2,12 @@
 
 namespace App\Services\Profile;
 
+use App\Models\Skill;
+use Mockery\Undefined;
 use App\Models\Profile;
 use App\Models\Experience;
 use InvalidArgumentException;
 use App\Services\ConvertImageService;
-use Mockery\Undefined;
 
 final class ProfileExperiences
 {
@@ -39,8 +40,8 @@ final class ProfileExperiences
             'url',
             'picture'
         ];
-
         foreach ($datas['experiences'] as $experience) {
+
 
             // format datas
             $datas = [];
@@ -61,6 +62,21 @@ final class ProfileExperiences
                 $experiencesToDelete[] = $exp->id;
             }
 
+            if (isset($experience['skills'])) {
+                $experienceSkills = [];
+                foreach ($experience['skills'] as $skill) {
+                    $experienceSkills[] = Skill::find($skill);
+                }
+
+                // remove skills no more selected
+                foreach ($exp->skills as $prev) {
+                    if(!in_array($prev, $experienceSkills)) {
+                        $exp->skills()->detach($prev);
+                    }
+                }
+                
+                $exp->skills()->attach($experienceSkills);
+            }
 
             if (isset($experience['picture'])) {
                 $file_name = $this->experiencePicture->replaceExperienceImage($experience['picture'], $exp);
@@ -81,7 +97,6 @@ final class ProfileExperiences
                 $experiencesToCreate[] = $datas;
             }
         }
-
         // update and create
         $profile->experiences()->upsert($experiencesToUpdate, uniqueBy: ['id'], update: $fillables);
         $profile->experiences()->createMany($experiencesToCreate);

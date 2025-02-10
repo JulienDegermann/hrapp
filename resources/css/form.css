@@ -8,7 +8,8 @@ form {
         }
 
         input,
-        textarea {
+        textarea,
+        select {
             display: inline-block;
             width: 100%;
             min-width: 200px;
@@ -18,6 +19,13 @@ form {
             border-radius: 0.5rem;
             &::focus {
                 border: 3px solid var(--dark);
+            }
+        }
+
+        select {
+            padding: 0;
+            > option {
+                padding: 0.5rem;
             }
         }
 
@@ -31,6 +39,16 @@ form {
                 width: auto;
                 margin: 0;
             }
+        }
+    }
+    fieldset {
+        max-height: 1000px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        cursor: pointer;
+        &.hide {
+            max-height: 0;
         }
     }
 }

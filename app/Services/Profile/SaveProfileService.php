@@ -30,7 +30,7 @@ final class SaveProfileService
         $profile->first_name = $formDatas['first_name'] ?? null;
         $profile->last_name = $formDatas['last_name'] ?? null;
         $profile->email = $formDatas['email'] ?? null;
-        $profile->phone = $datas['phone'] ?? null;
+        $profile->phone = $formDatas['phone'] ?? null;
         $profile->resume = $formDatas['resume'] ?? null;
         $profile->github = $formDatas['github'] ?? null;
         $profile->linkedin = $formDatas['linkedin'] ?? null;

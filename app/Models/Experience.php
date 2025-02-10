@@ -34,12 +34,21 @@ final class Experience extends Model
         return $this->belongsTo(Profile::class);
     }
 
+    // /**
+    //  * get skills related to Experience
+    //  * @return BelongsToMany - list of all Experiences::class related to a skill
+    //  */
+    // public function experiences(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Skill::class);
+    // }
+
     /**
-     * get skills related to Experience
-     * @return BelongsToMany - list of all Experiences::class related to a skill
+     * get experience related to Skill
+     * @return BelongsToMany - list of all Skill::class related to an Experience
      */
-    public function experiences(): BelongsToMany
+    public function skills(): BelongsToMany
     {
-        return $this->belongsToMany(Skill::class);
+        return $this->belongsToMany(Skill::class, 'experiences_skills');
     }
 }

@@ -1,12 +1,14 @@
-@extends('layout')
+@extends('admin.admin')
 
-@section('content')
+@section('admin_content')
 <section>
     <div class="container">
-        <p>début 1er form</p>
-        @include('_partials._forms._profile_form')
-        <p>début 2e form</p>
-        @include('_partials._forms._experiences_form')
+        <div class="flex">
+            @include('_partials._forms._profile_form')
+
+            @include('_partials._forms._experiences_form')
+        </div>
+
     </div>
 </section>
 @endsection

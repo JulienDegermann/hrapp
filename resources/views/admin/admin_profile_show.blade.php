@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('admin.admin')
 
-@section('content')
+@section('admin_content')
 <section>
     <div class="container">
 
