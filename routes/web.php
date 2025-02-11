@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminSkillController;
  * Client routes
  */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/profile/{id}', [HomeController::class, 'showProfile'])->name('profile_show');
 
 /**
  * Admin routes
@@ -38,3 +39,5 @@ Route::put('/back-office/profile/{id}/experiences', [AdminProfileController::cla
 Route::get('/back-office/skills/{id?}', [AdminSkillController::class, 'showSkills'])->name('admin.show_skills');
 Route::put('/back-office/skill/save/{id?}', [AdminSkillController::class, 'saveSkill'])->name('admin.save_skill');
 Route::delete('/back-office/skill/delete/{id}', [AdminSkillController::class, 'deleteSkill'])->name('admin.delete_skill');
+
+

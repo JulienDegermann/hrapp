@@ -29,6 +29,15 @@ form {
             }
         }
 
+        input[type="checkbox"] {
+            width: min-content;
+            
+            & + label {
+                
+                width: max-content;
+            }
+        }
+
         textarea {
             resize: vertical;
         }
@@ -42,7 +51,7 @@ form {
         }
     }
     fieldset {
-        max-height: 1000px;
+        max-height: 2000px;
         padding: 1rem;
         margin-bottom: 1rem;
         overflow: hidden;
