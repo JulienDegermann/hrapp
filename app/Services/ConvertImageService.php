@@ -87,7 +87,7 @@ final class ConvertImageService
     
     // save the image with uniqid and destroy the image created
     if ($image instanceof GdImage) {
-      $newFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.webp';
+      $newFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . uniqid() .'.webp';
       // save on server
 
       // dd($folder . $newFileName);
@@ -96,20 +96,6 @@ final class ConvertImageService
       imagedestroy($image);
 
       return $newFileName;
-
-      // if (file_exists($newFileName)) {
-      //   // dd('ok');
-
-      //   // unlink($newFileName); // Supprime le fichier
-
-      //   $file_url = $newFileName;
-      //   header('Content-Type: application/octet-stream');
-      //   header("Content-Transfer-Encoding: Binary");
-      //   header("Content-disposition: attachment; filename=\"" . basename($file_url) . "\"");
-      //   readfile($file_url);
-      //   unlink($file_url);
-      //   return;
-      // }
     }
   }
   /**
@@ -127,22 +113,6 @@ final class ConvertImageService
         readfile($data);
         unlink($data);
       }
-      // if (is_dir($data)) {
-      //   // dd('dossier');
-
-      //   // create a zip file and send it
-      //   $zip = new \ZipArchive();
-
-
-      //   $zipFileName = $data . '.zip';
-      //   dd($zipFileName);
-      //   if ($zip->open($zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
-      //     throw new Exception('Impossible de créer le fichier zip');
-      //   }
-
-
-      // return $zip;
-      // }
     }
   }
 }

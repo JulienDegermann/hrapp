@@ -61,7 +61,7 @@ final class AdminProfileController
             }
         }
         $profile->delete();
-        return redirect()->route('admin.profiles');
+        return redirect()->route('admin.show_profiles');
     }
 
     /**
@@ -83,7 +83,7 @@ final class AdminProfileController
             }
         }
 
-        return redirect()->route('admin.profiles');
+        return redirect()->route('admin.show_profiles');
     }
 
     /**
@@ -97,12 +97,12 @@ final class AdminProfileController
 
     /**
      * edit a profile
-     * @param int $id - id of the profile to edit
+     * @param ?int $id - id of the profile to edit
      * @return View - display the form to edit a profile
      */
-    public function editProfile(int $id): View
+    public function editProfile(?int $id = null): View
     {
-        $profile = Profile::find($id);
+        $profile = Profile::find($id) ?? null;
         $skills = Skill::all();
         return view('admin.admin_profile_edit', ['profile' => $profile, 'skills' => $skills]);
     }
@@ -132,7 +132,7 @@ final class AdminProfileController
             }
         }
 
-        return redirect()->route('admin.profiles');
+        return redirect()->route('admin.show_profiles');
     }
 
     /**
@@ -141,7 +141,7 @@ final class AdminProfileController
      * @param Request $request
      * @return RedirectResponse - redirection to edit page
      */
-    public function updateProfileExperiences(
+    public function saveProfileExperiences(
         int $id,
         Request $request,
         ProfileExperiences $profileExperiences
@@ -151,6 +151,6 @@ final class AdminProfileController
 
         $profile = $profileExperiences->updateProfileExperiences($profile, $datas);
 
-        return redirect()->route('admin.profiles');
+        return redirect()->route('admin.show_profiles');
     }
 }

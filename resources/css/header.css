@@ -1,3 +1,4 @@
 header {
-    padding: 1rem;
+    background: var(--dark);
+    color: var(--light);
 }

@@ -14,14 +14,23 @@ final class AdminSkillController extends Controller
 
     /**
      * page showing existing skills
+     * @return View
+     */
+    public function showSkills(): View
+    {
+        $skills = Skill::all();
+        return view('admin.admin_skills', ['skills' => $skills]);
+    }
+
+    /**
+     * page for create or update skill
      * @param int $id - id of skill to update
      * @return View
      */
-    public function showSkills(?int $id = null): View
+    public function editSkill(?int $id = null): View
     {
-        $skills = Skill::all();
         $skill = $id ? Skill::find($id) : null;
-        return view('admin.admin_skills', ['skills' => $skills, "skill" => $skill]);
+        return view('admin.admin_skill_edit', ["skill" => $skill]);
     }
 
 

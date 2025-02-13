@@ -1,10 +1,10 @@
 <div>
-    <h2> {{ isset($profile) ? 'Modifier le' : 'Ajouter un' }} profil</h2>
+    <h2> {{ $profile ? 'Modifier le' : 'Ajouter un' }} profil</h2>
 
     <form
         id="profile_form"
         method="POST"
-        action="{{ isset($profile) ? route('admin.profile.edit', ['id' => $profile->id]) : route('admin.profile.create') }}"
+        action="{{ route('admin.edit_profile', ['id' => $profile->id ?? null]) }}"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')

@@ -17,15 +17,10 @@
 <body>
     @include('_partials._header')
 
-    <div class="container">
-
-        <button class="button text-yellow-300">Bouton test tailwind</button>
-    </div>
-
-
     <main>
         @yield('content')
     </main>
+
     @include('_partials._footer')
 
 </body>

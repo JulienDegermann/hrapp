@@ -2,7 +2,7 @@
 <div>
     <h2>Expériences</h2>
 
-    <form id="experiences_form" method="POST" action="{{ route('admin.profile.update_experiences', $profile->id) }}" enctype="multipart/form-data">
+    <form id="experiences_form" method="POST" action="{{ route('admin.save_profile_experiences', $profile->id ?? null) }}" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div id="experiences">
@@ -64,19 +64,18 @@
                             for="experiences[{{$i}}][skills]">
                             Compétences
                         </label>
-       
+
                         <select name="experiences[{{$i}}][skills][]" multiple>
                             @foreach($skills as $skill)
-                            <option 
-                            {{ $profile->experiences[$i]->skills->contains($skill->id) ? 'selected' : "" }}                                 
-                            value="{{ $skill->id }}">{{ $skill->title }}</option>
+                            <option
+                                {{ $profile->experiences[$i]->skills->contains($skill->id) ? 'selected' : "" }}
+                                value="{{ $skill->id }}">{{ $skill->title }}</option>
                             @endforeach
                         </select>
                     </div>
 
-
                     <div class="form-group">
-                        <label for="experiences[{{$i}}][picture]">Photo de profil</label>
+                        <label for="experiences[{{$i}}][picture]">Image du projet</label>
                         <input type="file" name="experiences[{{$i}}][picture]" id="experiences[{{$i}}][picture]" class="form-control">
 
                         @if(isset($profile->experiences[$i]->picture))
@@ -88,8 +87,6 @@
                         </div>
                         @endif
                     </div>
-
-
 
                     <div class="form-group">
                         <input

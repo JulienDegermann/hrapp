@@ -14,12 +14,20 @@ form {
             width: 100%;
             min-width: 200px;
             max-width: 600px;
-            border: 1px solid var(--dark);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            &::focus {
-                border: 3px solid var(--dark);
+            border: none;
+            border-bottom: 1px solid var(--dark);
+            padding: 0.25rem 0;
+            background: none;
+
+            &:focus-visible,
+            &:focus-visible {
+                border-bottom: 3px solid var(--action);
+                outline: none;
             }
+        }
+
+        input[type="file"] {
+            cursor: pointer;
         }
 
         select {
@@ -31,9 +39,8 @@ form {
 
         input[type="checkbox"] {
             width: min-content;
-            
+
             & + label {
-                
                 width: max-content;
             }
         }

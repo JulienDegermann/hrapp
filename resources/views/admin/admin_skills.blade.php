@@ -3,26 +3,36 @@
 @section('admin_content')
 <section>
     <div class="container">
-        <div class="flex">
-            <div>
-                <h2>Liste des compétences</h2>
-                @foreach($skills as $current)
-                <div class="flex">
-                    <p>{{ $current->title }}</p>
-                    <a class="button" href="{{ route('admin.show_skills', ['id' => $current->id]) }}">Modifier</a>
-                    <form action="{{ route('admin.delete_skill', ['id' => $current->id]) }}" method="POST">
-                        @method('DELETE')
+
+
+
+        <a class="button" href="{{ route('admin.edit_skill', null) }}">Créer une compétence</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Version</th>
+                    <th>Edit</th>
+                    <th>delete</th>
+                </tr>
+            </thead>
+            @foreach($skills as $skill)
+            <tr>
+                <td>{{$skill->title}}</td>
+                <td>{{$skill->version}}</td>
+                <td><a class="button" href="{{ route('admin.edit_skill', ['id' => $skill->id]) }}">edit</a></td>
+                <td>
+                    <form
+                        action="{{ route('admin.delete_skill', ['id' => $skill->id]) }}"
+                        method="POST">
                         @csrf
-                        <input type="submit" class="button" value="Supprimer">
+                        @method('DELETE')
+                        <button class="button cta" type="submit">delete</button>
                     </form>
-
-                </div>
-                @endforeach
-
-
-            </div>
-            @include('_partials._forms._skills_form')
-        </div>
+                </td>
+            </tr>
+            @endforeach
+        </table>
     </div>
 </section>
 

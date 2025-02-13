@@ -1,13 +1,16 @@
 .button {
     padding: .3rem .7rem;
     border: 2px solid var(--dark);
-    background: var(--light);
+    background: transparent;
     border-radius: 0.5rem;
     cursor: pointer;
     color: var(--dark);
     text-decoration: none;
-    margin: 1rem;
+    margin: .25rem;
     font-size: 1rem;
+    width: max-content;
+    height: max-content;
+    display: inline-block;
     
     &.cta {
         background: var(--action);

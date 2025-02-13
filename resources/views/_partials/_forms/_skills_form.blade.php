@@ -1,6 +1,6 @@
 <div>
 
-    <h2>Créer une nouvelle compétence</h2>
+    <h2>{{ $skill ? 'Modifier la' : 'Créer une nouvelle'  }} compétence</h2>
 
     <form id="skills_form"action="{{ route('admin.save_skill', ['id' => isset($skill) ? $skill->id : null]) }}" method="POST">
         @method('PUT')

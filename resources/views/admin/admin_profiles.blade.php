@@ -4,32 +4,30 @@
 <section>
     <div class="container">
 
-        <a class="button cta" href="{{ route('admin.profile.create')}}">Créer un profile</a>
+        <a class="button" href="{{ route('admin.edit_profile', null)}}">Créer un profile</a>
         <table>
             <thead>
                 <tr>
-                    <td>Firstname</td>
-                    <td>Lastname</td>
-                    <td>Email</td>
-                    <td>Phone</td>
-                    <td>Resume</td>
-                    <td>View</td>
-                    <td>Edit</td>
-                    <td>Delete</td>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>E-mail</th>
+                    <th>Téléphone</th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             @foreach($profiles as $profile)
             <tr>
                 <td>{{$profile->first_name}}</td>
                 <td>{{$profile->last_name}}</td>
-                <td>{{$profile->email}}</td>
-                <td>{{$profile->phone}}</td>
-                <td>{{$profile->resume}}</td>
-                <td><a class="button" href="{{ route('admin.profile.show', ['id' => $profile->id]) }}">show</a></td>
-                <td><a class="button" href="{{ route('admin.profile.edit', ['id' => $profile->id]) }}">edit</a></td>
+                <td><a href="mailto:{{$profile->email}}">{{$profile->email}}</a></td>
+                <td><a href="tel:{{$profile->phone}}">{{$profile->phone}}</a></td>
+                <td><a class="button" href="{{ route('admin.show_profile', ['id' => $profile->id]) }}">show</a></td>
+                <td><a class="button" href="{{ route('admin.edit_profile', ['id' => $profile->id]) }}">edit</a></td>
                 <td>
                     <form
-                        action="{{ route('admin.profile.delete', ['id' => $profile->id]) }}"
+                        action="{{ route('admin.delete_profile', ['id' => $profile->id]) }}"
                         method="POST">
                         @csrf
                         @method('DELETE')
