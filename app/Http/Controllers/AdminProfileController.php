@@ -67,13 +67,17 @@ final class AdminProfileController
     /**
      * save a new profile
      * @param Request $request
+     * @param ?int $id - id of the profile to edit
      * @return RedirectResponse - redirect to the profiles page
      */
-    public function saveProfile(Request $request, SaveProfileService $saveProfile): RedirectResponse
+    public function saveProfile(
+        Request $request, 
+        SaveProfileService $saveProfile,
+        ?int $id =null): RedirectResponse
     {
         $datas = $request->all();
 
-        $profile = new Profile;
+        $profile = Profile::findOrNew($id);
 
         if ($profile) {
             try {

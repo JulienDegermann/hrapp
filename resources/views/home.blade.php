@@ -38,23 +38,26 @@
             <h2 class="title">Tous les profils</h2>
             @foreach($profiles as $profile)
 
-            <a href="{{ route('profile_show', $profile->id) }}" class="profile">
+            <a href="{{ route('profile_show', $profile->id) }}" class="profile-card">
 
                 <h3 class='title'>{{ $profile->first_name }} {{ $profile->last_name }}</h3>
-                <p>e-mail : {{ $profile->email }}</p>
-                <p>phone : {{ $profile->phone ?? ''}}</p>
-
-                <img src="{{ asset('uploads/images/'.$profile->picture)}}" alt="photo de {{$profile->first_name}}">
-                @if(isset($profile->experiences))
-                @foreach($profile->experiences as $experience)
-                {{$experience->title}}
-                @endforeach
-                @endif
-
+                <img src="{{ $profile->picture ? asset('uploads/images/'.$profile->picture) : asset('images/default-profile.webp') }}" alt="photo de {{$profile->first_name}}">
             </a>
             @endforeach
         </div>
     </div>
 
+</section>
+
+<section>
+    <div class="container">
+        <h2 class="title">
+            Nos offres d'emploi
+        </h2>
+
+        @foreach($jobs as $job)
+        @include('_partials._job_card')
+        @endforeach
+    </div>
 </section>
 @endsection

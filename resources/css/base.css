@@ -14,19 +14,25 @@ a {
 body {
     background: var(--light);
     color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 main {
-    height: calc(100vh - 131px - 18px);
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 section {
     padding: 3rem 0;
 }
+
 .container {
     max-width: 1400px;
     margin: auto;
-    padding: 2rem;
+    padding: 0 2rem;
 }
 
 .flex {

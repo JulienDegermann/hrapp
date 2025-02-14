@@ -1,4 +1,9 @@
 form {
+
+    max-width: 300px;
+    .req {
+        color: red;
+    }
     .form-group {
         label {
             display: inline-block;
@@ -15,19 +20,28 @@ form {
             min-width: 200px;
             max-width: 600px;
             border: none;
-            border-bottom: 1px solid var(--dark);
+            border-bottom: 2px solid var(--dark);
             padding: 0.25rem 0;
             background: none;
-
+            margin-bottom: 1rem;
+            
             &:focus-visible,
             &:focus-visible {
-                border-bottom: 3px solid var(--action);
+                border-bottom: 2px solid var(--action);
                 outline: none;
             }
         }
 
         input[type="file"] {
             cursor: pointer;
+
+            &::file-selector-button {
+                color: var(--light);
+                background: var(--dark);
+                padding: 0.5rem 1rem;
+                cursor: pointer;
+                border-radius: 0.25rem;
+            }
         }
 
         select {

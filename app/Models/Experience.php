@@ -25,6 +25,12 @@ final class Experience extends Model
         'picture'
     ];
 
+
+    protected $casts = [
+        'updated_at' => 'datetime',
+        'created_at' => 'datetime',
+    ];
+
     /**
      * get profile which onw experience
      * @return BelongTo - a BelongsTo refering to profile

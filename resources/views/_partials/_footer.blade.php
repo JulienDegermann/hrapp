@@ -1,7 +1,8 @@
 </main>
 <footer>
-
-ICI C'EST LE FOOTER
+    <div class="container">
+        @include('_partials._navigation')
+    </div>
 </footer>
 </body>
 

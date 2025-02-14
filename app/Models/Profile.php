@@ -27,6 +27,14 @@ class Profile extends Model
         'github'
     ];
 
+
+    protected $casts = [
+        'updated_at' => 'datetime',
+        'created_at' => 'datetime',
+        'date_of_birth' => 'date',
+    ];
+
+
     /**
      * get expreriences of profile
      * @return HasMany - a HasMany which contains profile's experiences

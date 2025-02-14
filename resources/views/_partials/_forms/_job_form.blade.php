@@ -3,39 +3,39 @@
     @csrf
     <div class="form-group">
         <label for="title">
-            Titre de l'annonce
+            Titre de l'annonce<span class="req"> *</span>
         </label>
-        <input type="text" name="title" id="title" @if(isset($job)) value="{{ $job->title }}" @endif>
+        <input type="text" name="title" id="title" @if(isset($job)) value="{{ $job->title }}" @endif required autofocus>
     </div>
     <div class="form-group">
         <label for="description">
-            Description
+            Description<span class="req"> *</span>
         </label>
-        <textarea name="description" id="description">@if(isset($job)){{ $job->description }}@endif</textarea>
+        <textarea name="description" id="description" required>@if(isset($job)){{ $job->description }}@endif</textarea>
     </div>
     <div class="form-group">
         <label for="location">
-            Lieu de travail
+            Lieu de travail<span class="req"> *</span>
         </label>
-        <input type="text" name="location" id="location" @if(isset($job)) value="{{ $job->location }}" @endif>
+        <input type="text" name="location" id="location" @if(isset($job)) value="{{ $job->location }}" @endif required>
     </div>
     <div class="form-group">
         <label for="remuneration_min">
-            Rémunération minimale
+            Rémunération minimale<span class="req"> *</span>
         </label>
-        <input type="int" name="remuneration_min" id="remuneration_min" @if(isset($job)) value="{{ $job->remuneration_min }}" @endif>
+        <input type="int" name="remuneration_min" id="remuneration_min" @if(isset($job)) value="{{ $job->remuneration_min }}" @endif required>
     </div>
     <div class="form-group">
         <label for="remuneration_max">
-            Rémunération maximale
+            Rémunération maximale<span class="req"> *</span>
         </label>
-        <input type="int" name="remuneration_max" id="remuneration_max" @if(isset($job)) value="{{ $job->remuneration_max }}" @endif>
+        <input type="int" name="remuneration_max" id="remuneration_max" @if(isset($job)) value="{{ $job->remuneration_max }}" @endif required>
     </div>
     <div class="form-group">
         <label for="start_date">
-            Date de commencement souhaitée
+            Date de commencement souhaitée<span class="req"> *</span>
         </label>
-        <input type="date" name="start_date" id="start_date" @if(isset($job)) value="{{ $job->start_date }}" @endif>
+        <input type="date" name="start_date" id="start_date" @if(isset($job)) value="{{ $job->start_date }}" @endif required>
     </div>
     <div class="form-group">
         <label for="publised_at">
@@ -57,4 +57,5 @@
         @endif
     </div>
     <input class="button" type="submit" value="enregistrer">
+    <p><span class="req">*</span> : champs obligatoires</p>
 </form>

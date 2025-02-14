@@ -12,6 +12,8 @@ use App\Http\Controllers\AdminProfileController;
  */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{id}', [HomeController::class, 'showProfile'])->name('profile_show');
+Route::get('/job/{id}', [HomeController::class, 'showJob'])->name('job_show');
+Route::get('/apply/{id}', [HomeController::class, 'applyForJob'])->name('job_apply');
 
 /**
  * Admin routes
@@ -25,7 +27,7 @@ Route::get('/back-office/profiles', [AdminProfileController::class, 'showProfile
 Route::get('/back-office/profile/show/{id}', [AdminProfileController::class, 'showProfile'])->name('admin.show_profile');
 
 Route::get('/back-office/profile/edit/{id?}', [AdminProfileController::class, 'editProfile'])->name('admin.edit_profile');
-Route::put('/back-office/profile/edit/{id}', [AdminProfileController::class, 'saveProfile'])->name('admin.save_profile');
+Route::put('/back-office/profile/save/{id?}', [AdminProfileController::class, 'saveProfile'])->name('admin.save_profile');
 
 
 Route::delete('/back-office/profile/delete/{id}', [AdminProfileController::class, 'deleteProfile'])->name('admin.delete_profile');

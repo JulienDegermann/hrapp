@@ -27,6 +27,13 @@ final class Job extends Model
         'updated_at'
     ];
 
+    protected $casts = [
+        'updated_at' => 'datetime',
+        'created_at' => 'datetime',
+        'published_at' => 'datetime',
+        'start_date' => 'date',
+    ];
+
     /**
      * get experience related to Skill
      * @return BelongsToMany - list of all Experiences::class related to a skill

@@ -18,24 +18,27 @@
                     <div class="form-group">
                         <label
                             for="experiences[{{$i}}][title]">
-                            Titre
+                            Titre<span class="req"> *</span>
                         </label>
                         <input
                             type="text"
                             name="experiences[{{$i}}][title]"
                             id="experiences[{{$i}}][title]"
-                            value="{{ $profile->experiences[$i]->title }}">
+                            value="{{ $profile->experiences[$i]->title }}"
+                            required
+                            autofocus>
                     </div>
                     <div class="form-group">
                         <label
                             for="experiences[{{$i}}][description]">
-                            Description
+                            Description<span class="req"> *</span>
                         </label>
                         <input
                             type="text"
                             name="experiences[{{$i}}][description]"
                             id="experiences[{{$i}}][description]"
-                            value="{{ $profile->experiences[$i]->description }}">
+                            value="{{ $profile->experiences[$i]->description }}"
+                            required>
                     </div>
                     <div class="form-group">
                         <label
@@ -106,6 +109,7 @@
         </div>
         <button class=" button" type="button" id="add-experience">Ajouter une expérience</button> <br />
         <input type="submit" class="button" value="enregistrer" name="add_experiences">
+        <p><span class="req">*</span> : champs obligatoires</p>
     </form>
 </div>
 </div>

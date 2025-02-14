@@ -19,6 +19,12 @@ final class Skill extends Model
         'version'
     ];
 
+    protected $casts = [
+        'updated_at' => 'datetime',
+        'created_at' => 'datetime',
+    ];
+
+
     /**
      * get experience related to Skill
      * @return BelongsToMany - list of all Experiences::class related to a skill

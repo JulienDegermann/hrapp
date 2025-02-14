@@ -12,7 +12,7 @@
 }
 #admin .flex .admin-nav {
     flex: 1;
-    max-width: 300px;
+    max-width: max-content;
     background: var(--dark);
     color: var(--light);
     margin: 0;

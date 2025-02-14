@@ -1,5 +1,20 @@
-.profile {
-    padding: 3rem;
+.profile-card {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 3/4;
+    box-shadow: 0 1px 3px var(--dark);
+    background: var(--dark);
+    /* background: white; */
+    position: relative;
+
+    .title {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: var(--light);
+        padding: 1rem;
+    }
 }
 #profile {
     .profile-experience {

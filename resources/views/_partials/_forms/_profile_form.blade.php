@@ -4,21 +4,21 @@
     <form
         id="profile_form"
         method="POST"
-        action="{{ route('admin.edit_profile', ['id' => $profile->id ?? null]) }}"
+        action="{{ route('admin.save_profile', $profile->id ?? null) }}"
         enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="first_name">Prénom</label>
-            <input type="text" name="first_name" id="first_name" class="form-control" value="{{ isset($profile) ? $profile->first_name : '' }}">
+            <label for="first_name">Prénom<span class="req"> *</span></label>
+            <input type="text" name="first_name" id="first_name" class="form-control" value="{{ isset($profile) ? $profile->first_name : '' }}" required autofocus>
         </div>
         <div class="form-group">
-            <label for="last_name">Nom</label>
-            <input type="text" name="last_name" id="last_name" class="form-control" value="{{ isset($profile) ? $profile->last_name : '' }}">
+            <label for="last_name">Nom<span class="req"> *</span></label>
+            <input type="text" name="last_name" id="last_name" class="form-control" value="{{ isset($profile) ? $profile->last_name : '' }}" required>
         </div>
         <div class="form-group">
-            <label for=" email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" value="{{ isset($profile) ? $profile->email : '' }}">
+            <label for=" email">Email<span class="req"> *</span></label>
+            <input type="email" name="email" id="email" class="form-control" value="{{ isset($profile) ? $profile->email : '' }}" required>
         </div>
         <div class="form-group">
             <label for="phone">Téléphone</label>
@@ -29,8 +29,8 @@
             <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" value="{{ isset($profile) ? $profile->date_of_birth : '' }}">
         </div>
         <div class="form-group">
-            <label for="linkedin">Profil Linkedin</label>
-            <input type="url" name="linkedin" id="linkedin" class="form-control" value="{{ isset($profile) ? $profile->linkedin : '' }}">
+            <label for="linkedin">Profil Linkedin<span class="req"> *</span></label>
+            <input type="url" name="linkedin" id="linkedin" class="form-control" value="{{ isset($profile) ? $profile->linkedin : '' }}" required>
         </div>
         <div class="form-group">
             <label for="github">Profil GitHub</label>
@@ -54,5 +54,6 @@
         </div>
 
         <input type="submit" class="button" value="enregistrer" name="save_profile">
+        <p><span class="req">*</span> : champs obligatoires</p>
     </form>
 </div>
