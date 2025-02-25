@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use App\Models\Profile;
+use App\Services\Contact\FileService\VcardService;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Http\RedirectResponse;
+use App\Services\Contact\SendEmailService;
+use App\Services\Contact\SendEmailToProfileService;
 
 final class HomeController
 {
@@ -13,7 +19,7 @@ final class HomeController
         $profile = Profile::where('email', 'degermann.julien@gmail.com')->first();
         $profiles = Profile::all();
         $jobs = Job::all();
-        return view('home', ['profile' => $profile, "profiles" => $profiles, 'jobs' => $jobs]);
+        return view('home', ['default_profile' => $profile, "profiles" => $profiles, 'jobs' => $jobs]);
     }
 
     /**
@@ -47,5 +53,53 @@ final class HomeController
     {
         $job = Job::findOrFail($id);
         return view('apply_job', ['job' => $job]);
+    }
+
+
+
+    /**
+     * show page with contact form
+     * @param int $id - id of Profile to contact
+     * @return View - view with contact form
+     */
+    public function showContact(?int $id = null): View
+    {
+        $profile = Profile::find($id) ?? null;
+
+        return view('show_contact', ['profile' => $profile]);
+    }
+
+
+    /**
+     * show page with contact form
+     * @param int $id - id of Profile to contact
+     * @return View - view with contact form
+     */
+    public function sendContact(
+        Mailer $mailer,
+        Request $request,
+        VcardService $vCard,
+        ?int $id = null,
+    ): RedirectResponse {
+
+        $datas = $request->all();
+        $profile = Profile::find($id) ?? null;
+
+        if ($profile) {
+            $file = $vCard->createVcard($datas);
+
+            $mail = new SendEmailToProfileService($profile, $datas);
+            $mail->attach($file);
+            if ($mail->send($mailer)) {
+                $vCard->deleteVcard();
+            };
+        }
+        else {
+            $mail = new SendEmailService($datas);
+            $mail->send($mailer);
+        }
+
+
+        return redirect()->route('home');
     }
 }

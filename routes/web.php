@@ -14,6 +14,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{id}', [HomeController::class, 'showProfile'])->name('profile_show');
 Route::get('/job/{id}', [HomeController::class, 'showJob'])->name('job_show');
 Route::get('/apply/{id}', [HomeController::class, 'applyForJob'])->name('job_apply');
+Route::get('/contact/{id?}', [HomeController::class, 'showContact'])->name('contact_show');
+Route::put('/contact/{id?}', [HomeController::class, 'sendContact'])->name('contact_send');
 
 /**
  * Admin routes

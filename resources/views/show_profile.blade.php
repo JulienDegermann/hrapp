@@ -36,6 +36,7 @@
             </div>
         </div>
         @endforeach
+        <a class="button" href="{{ route('contact_show', $profile->id) }}">Contacter ce développeur</a>
     </div>
 </section>
 
