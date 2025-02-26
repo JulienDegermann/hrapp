@@ -42,4 +42,14 @@ final class Job extends Model
     {
         return $this->belongsToMany(Skill::class, 'jobs_skills');
     }
+
+
+    /**
+     * get candidates who applied to the job
+     * @return BelongsToMany - list of all Candidates::class related to a job
+     */
+    public function candidates(): BelongsToMany
+    {
+        return $this->belongsToMany(Candidate::class, 'candidates_jobs');
+    }
 }
