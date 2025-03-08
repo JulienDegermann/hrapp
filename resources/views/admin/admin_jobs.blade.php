@@ -16,6 +16,7 @@
                             <th>Publié le</th>
                             <th>Edit</th>
                             <th>Delete</th>
+                            <th>Candidats</th>
                         </tr>
                     </thead>
                     @foreach($jobs as $current)
@@ -31,6 +32,7 @@
                                 <input type="submit" value="suppimer" class="button">
                             </form>
                         </td>
+                        <td><a href="{{ route('admin.job_applicants', $current->id) }}" class="button">{{ count($current->candidates) }} candidats</a></td>
                     </tr>
                     @endforeach
                 </table>

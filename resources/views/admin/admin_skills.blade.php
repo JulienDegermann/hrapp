@@ -3,9 +3,6 @@
 @section('admin_content')
 <section>
     <div class="container">
-
-
-
         <a class="button" href="{{ route('admin.edit_skill', null) }}">Créer une compétence</a>
         <table>
             <thead>

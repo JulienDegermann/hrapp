@@ -14,6 +14,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{id}', [HomeController::class, 'showProfile'])->name('profile_show');
 Route::get('/job/{id}', [HomeController::class, 'showJob'])->name('job_show');
 Route::get('/apply/{id}', [HomeController::class, 'applyForJob'])->name('job_apply');
+Route::put('/apply/{id}', [HomeController::class, 'applyForJob'])->name('job_apply');
 Route::get('/contact/{id?}', [HomeController::class, 'showContact'])->name('contact_show');
 Route::put('/contact/{id?}', [HomeController::class, 'sendContact'])->name('contact_send');
 
@@ -49,6 +50,7 @@ Route::delete('/back-office/skill/delete/{id}', [AdminSkillController::class, 'd
  * Admin jobs
  */
 Route::GET('/back-office/jobs', [AdminJobController::class, 'showJobs'])->name('admin.show_jobs');
+Route::GET('/back-office/job/{id}', [AdminJobController::class, 'showApplicants'])->name('admin.job_applicants');
 Route::GET('/back-office/jobs/edit/{id?}', [AdminJobController::class, 'editJob'])->name('admin.edit_job');
 Route::PUT('/back-office/jobs/save/{id?}', [AdminJobController::class, 'saveJob'])->name('admin.save_job');
 Route::DELETE('/back-office/jobs/delete/{id?}', [AdminJobController::class, 'deleteJob'])->name('admin.delete_job');

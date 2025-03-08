@@ -42,10 +42,16 @@
 }
 th,
 td {
-    padding: .25rem 1rem;
+    padding: 0.25rem 1rem;
     background: white;
 }
 th {
     background: var(--dark);
     color: var(--light);
+}
+
+#job-details {
+    .flex > div {
+        flex: 1;
+    }
 }

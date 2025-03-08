@@ -11,6 +11,7 @@ use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Http\RedirectResponse;
 use App\Services\Contact\SendEmailService;
 use App\Services\Contact\SendEmailToProfileService;
+use App\Services\Job\ApplyToJobService;
 
 final class HomeController
 {
@@ -46,15 +47,26 @@ final class HomeController
 
     /**
      * show page with job's details
-     * @param int $id - id of Job to apply
+     * @param ?int $id - id of Job to apply (nullable)
+     * @param Request $request - request
+     * @param ApplyJobService $applyJobService - service to apply to job
      * @return View - view with apply form
      */
-    public function applyForJob(int $id): View
-    {
-        $job = Job::findOrFail($id);
+    public function applyForJob(
+        Request $request,
+        ApplyToJobService $applyToJobService,
+        ?int $id = null,
+    ): View {
+        $job = Job::findOrFail($id) ?? null;
+
+        $datas = $request->all();
+
+        if ($datas) {
+            $apply = $applyToJobService->apply($job, $datas);
+        }
+
         return view('apply_job', ['job' => $job]);
     }
-
 
 
     /**
@@ -93,8 +105,7 @@ final class HomeController
             if ($mail->send($mailer)) {
                 $vCard->deleteVcard();
             };
-        }
-        else {
+        } else {
             $mail = new SendEmailService($datas);
             $mail->send($mailer);
         }

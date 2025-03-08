@@ -78,9 +78,24 @@ final class AdminJobController extends Controller
         if ($job->image) {
             $job = $jobImage->deleteJobImage($job);
         }
-        
+
         $job->delete();
 
         return redirect()->route('admin.show_jobs');
+    }
+
+
+
+    /**
+     * show job's details and applicants
+     * @param int $id - id of the job if updating
+     * @return View - view of job with applicants
+     */
+    public function showApplicants(
+        int $id
+    ): View {
+        $job = Job::findOrFail($id);
+
+        return view('admin.admin_job_details', ['job' => $job]);
     }
 }
