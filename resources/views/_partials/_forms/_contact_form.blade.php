@@ -6,7 +6,7 @@
         @csrf
         <div class="form-group">
             <label for="first_name">Prénom<span class="req"> *</span></label>
-            <input type="text" name="first_name" id="first_name" class="form-control" required autofocus>
+            <input type="text" name="first_name" id="first_name" class="form-control" required {{ isset($profile) ? "autofocus" : "" }}>
         </div>
         <div class="form-group">
             <label for="last_name">Nom<span class="req"> *</span></label>
